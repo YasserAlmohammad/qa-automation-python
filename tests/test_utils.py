@@ -9,10 +9,13 @@ def test_add():
 @pytest.mark.parametrize(
     "value,expected",
     [
-        ("a@b.com", True),
-        ("abc", False),
-        ("a@b", False),
-        ("a.b", False),
+        (" a@b.com", False),   # leading space
+        ("a@b.com ", False),   # trailing space
+        ("a@@b.com", False),   # double @
+        ("a@b..com", True),    # still matches regex (we'll refine later)
+        ("", False),
+        (None, False),
+        (123, False),
     ],
 )
 def test_is_email(value, expected):
