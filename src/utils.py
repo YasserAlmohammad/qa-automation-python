@@ -1,9 +1,14 @@
+import re
+_EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+
 def add(a, b):
     return a + b
 
 
 def is_email(s: str) -> bool:
-    return "@" in s and "." in s
+    if not isinstance(s, str):
+        return False
+    return bool(_EMAIL_RE.match(s))
 
 
 def safe_div(a, b):

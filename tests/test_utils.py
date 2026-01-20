@@ -25,7 +25,8 @@ def test_is_email(value, expected):
 def test_safe_div_ok():
     assert safe_div(10, 2) == 5
 
-
+# Division by zero should raise an explicit error
+# instead of returning an invalid value or crashing silently
 def test_safe_div_zero_raises():
     with pytest.raises(ValueError):
         safe_div(10, 0)
