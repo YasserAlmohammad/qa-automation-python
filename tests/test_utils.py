@@ -1,6 +1,13 @@
 import pytest
 from src.utils import add, is_email, safe_div
 
+@pytest.fixture
+def valid_emails():
+    return [
+        "a@b.com",
+        "user.name@test.org",
+        "test123@example.net",
+    ]
 
 def test_add():
     assert add(2, 3) == 5
@@ -21,6 +28,9 @@ def test_add():
 def test_is_email(value, expected):
     assert is_email(value) is expected
 
+def test_is_email_valid_cases(valid_emails):
+    for email in valid_emails:
+        assert is_email(email) is True
 
 def test_safe_div_ok():
     assert safe_div(10, 2) == 5
