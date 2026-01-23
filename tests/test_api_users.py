@@ -6,7 +6,7 @@ def base_url():
     return "https://jsonplaceholder.typicode.com"
 
 def test_get_user_success(base_url):
-    response = requests.get(f"{base_url}/users/1")
+    response = requests.get(f"{base_url}/users/1", timeout=5)
 
     assert response.status_code == 200
 
@@ -16,7 +16,7 @@ def test_get_user_success(base_url):
 
 #test error case for user not found
 def test_get_user_not_found(base_url):
-    response = requests.get(f"{base_url}/users/9999")
+    response = requests.get(f"{base_url}/users/9999", timeout=5)
 
     assert response.status_code == 404
 
@@ -29,12 +29,12 @@ def test_get_user_not_found(base_url):
     ],
 )
 def test_get_user_by_id(base_url, user_id, expected_status):
-    response = requests.get(f"{base_url}/users/{user_id}")
+    response = requests.get(f"{base_url}/users/{user_id}", timeout=5)
     assert response.status_code == expected_status
 
 @pytest.mark.parametrize("user_id", [1, 2])
 def test_get_user_response_contains_required_fields(base_url, user_id):
-    response = requests.get(f"{base_url}/users/{user_id}")
+    response = requests.get(f"{base_url}/users/{user_id}", timeout=5)
 
     assert response.status_code == 200
     data = response.json()
@@ -42,3 +42,10 @@ def test_get_user_response_contains_required_fields(base_url, user_id):
     assert "id" in data
     assert "username" in data
     assert "email" in data
+import requests
+import pytest
+
+#just a sample test to show timeout handling
+def test_api_timeout_handling(base_url):
+    with pytest.raises(requests.exceptions.Timeout):
+        requests.get(base_url, timeout=0.0001)
