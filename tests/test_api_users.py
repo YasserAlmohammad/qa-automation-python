@@ -1,6 +1,8 @@
 import requests
 import pytest
 
+pytestmark = pytest.mark.api
+
 @pytest.fixture
 def base_url():
     return "https://jsonplaceholder.typicode.com"

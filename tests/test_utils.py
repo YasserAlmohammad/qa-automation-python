@@ -1,6 +1,8 @@
 import pytest
 from src.utils import add, is_email, safe_div
 
+pytestmark = pytest.mark.unit
+
 @pytest.fixture
 def valid_emails():
     return [
