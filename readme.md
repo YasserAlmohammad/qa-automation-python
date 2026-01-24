@@ -1,5 +1,6 @@
 [![Python tests](https://github.com/YasserAlmohammad/qa-automation-python/actions/workflows/python-tests.yml/badge.svg)](https://github.com/YasserAlmohammad/qa-automation-python/actions/workflows/python-tests.yml)
 
+[![API tests](https://github.com/YasserAlmohammad/qa-automation-python/actions/workflows/api-tests.yml/badge.svg)](https://github.com/YasserAlmohammad/qa-automation-python/actions/workflows/api-tests.yml)
 # QA Automation (Python + pytest)
 
 This repository is a **learning and practice project** for QA automation using **Python**, **pytest**, and **GitHub Actions**.  
